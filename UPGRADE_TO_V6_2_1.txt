@@ -1,0 +1,23 @@
+Upgrade to v6.2.1
+=================
+
+1. Stop the running server by pressing Ctrl+C in its PowerShell window.
+2. Extract RAG-v6-2-1.zip.
+3. Copy all extracted files and the web folder into:
+      C:\Users\abc\rag-assistant
+4. Choose Replace when Windows asks about files with the same names.
+5. Do not delete or replace your existing database, documents, exports, or
+   reports folders. They are not included in this update ZIP.
+6. In PowerShell, run:
+      cd C:\Users\abc\rag-assistant
+      .\.venv\Scripts\Activate.ps1
+      python run_web.py
+7. Refresh the browser. The status badge must show v6.2.1.
+
+Optional verification
+---------------------
+Run:
+   python run_acceptance_tests.py
+
+The verified release result is 60/60 passed. The full run can take several
+minutes because it includes semantic summaries and CSV downloads.

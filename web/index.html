@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Multilingual RAG Assistant</title><link rel="stylesheet" href="/assets/styles.css"></head>
+<body>
+  <header><div><span class="eyebrow">LOCAL DOCUMENT INTELLIGENCE</span><h1>Knowledge Assistant</h1></div><div class="header-actions"><div id="status" class="status">Checking system…</div><div id="userBar" class="user-bar hidden"><span id="userBadge"></span><button id="changePassword" class="quiet" type="button">Change password</button><button id="logout" class="quiet" type="button">Sign out</button></div></div></header>
+  <section id="authScreen" class="auth-screen">
+    <form id="authForm" class="auth-card">
+      <span class="eyebrow">SECURE LOCAL ACCESS</span>
+      <h2 id="authTitle">Sign in</h2>
+      <p id="authHelp">Use your administrator or reviewer account.</p>
+      <label id="displayNameLabel" class="hidden">Your name<input id="authDisplayName" autocomplete="name" maxlength="80"></label>
+      <label>Username<input id="authUsername" autocomplete="username" required maxlength="50"></label>
+      <label>Password<input id="authPassword" type="password" autocomplete="current-password" required minlength="10"></label>
+      <button id="authSubmit" type="submit">Sign in</button>
+      <div id="authError" class="form-error" role="alert"></div>
+    </form>
+  </section>
+  <main id="appMain" class="hidden">
+    <aside>
+      <section><h2>Documents</h2><select id="document"><option value="all">All indexed documents</option></select><div id="documentMeta" class="muted"></div></section>
+      <section><h2>Answer language</h2><select id="language"><option value="en">English</option><option value="te">Telugu</option><option value="hi">Hindi</option><option value="kn">Kannada</option><option value="de">German</option><option value="ar">Arabic</option></select></section>
+      <section data-admin-only><h2>Add a PDF</h2><input id="file" type="file" accept="application/pdf"><button id="upload" class="secondary">Upload & index</button><div id="uploadState" class="muted"></div><progress id="jobProgress" class="hidden" max="100"></progress></section>
+      <section class="trust-tools"><h2>Accuracy & OCR</h2><div id="qualityMeta" class="muted">Checking record quality…</div><div id="qualityBreakdown"></div><button id="openReview" class="review-launch full-button">Manual verification</button><button id="recoverRecords" data-admin-only class="secondary full-button">Recover missing records</button><button id="reviewOcr" data-admin-only class="secondary full-button">Improve reviewed OCR</button><button id="runAccuracy" data-admin-only class="secondary full-button">Run accuracy report</button><div id="trustJobState" class="muted"></div><progress id="trustJobProgress" class="hidden" max="100"></progress><div id="reportLink"></div></section>
+      <section class="backup-tools" data-admin-only><h2>Data safety</h2><div id="backupMeta" class="muted">Checking backups…</div><button id="createBackup" class="review-launch full-button">Create verified backup</button><label class="backup-label" for="backupSelect">Available backups</label><select id="backupSelect"><option value="">No backup selected</option></select><div class="backup-actions"><button id="verifyBackup" class="secondary" type="button">Verify</button><button id="restoreBackup" class="secondary danger-button" type="button">Restore</button></div><div id="backupState" class="muted"></div><div id="backupLink"></div></section>
+      <section class="user-tools" data-admin-only><h2>User access</h2><form id="newUserForm"><label>Name<input id="newDisplayName" required maxlength="80"></label><label>Username<input id="newUsername" required maxlength="50"></label><label>Temporary password<input id="newPassword" type="password" required minlength="10"></label><label>Role<select id="newRole"><option value="reviewer">Reviewer</option><option value="admin">Administrator</option></select></label><button class="secondary full-button" type="submit">Create account</button></form><div id="userState" class="muted"></div><div id="userList" class="user-list"></div><details class="security-history"><summary>Recent security activity</summary><div id="securityAudit"></div></details></section>
+    </aside>
+    <div class="workspace">
+      <section id="reviewWorkspace" class="review-workspace hidden" aria-labelledby="reviewTitle">
+        <div class="review-topbar">
+          <div><span class="eyebrow">HUMAN QUALITY CHECK</span><h2 id="reviewTitle">Manual verification</h2><p>Compare each flagged row with the source PDF, correct it if needed, then verify it.</p></div>
+          <button id="closeReview" class="quiet" type="button">Close</button>
+        </div>
+        <div class="review-layout">
+          <div class="review-queue">
+            <div class="review-filters">
+              <label>Document<select id="reviewSource"><option value="all">All documents</option></select></label>
+              <label>Warning<select id="reviewWarning"><option value="all">All warnings</option></select></label>
+              <label>Status<select id="reviewStatus"><option value="needs_review">Needs review</option><option value="verified">Verified</option><option value="all">All review records</option></select></label>
+              <label>PDF page<input id="reviewDocumentPage" type="number" min="1" inputmode="numeric" placeholder="Any page"></label>
+            </div>
+            <div class="queue-heading"><strong id="reviewCount">Loading…</strong><button id="refreshReview" class="quiet" type="button">Refresh</button></div>
+            <div id="reviewQueue" class="queue-list" aria-live="polite"></div>
+            <div class="queue-pagination"><button id="reviewPrev" class="quiet" type="button">Previous</button><span id="reviewPageLabel">Page 1 of 1</span><button id="reviewNext" class="quiet" type="button">Next</button></div>
+          </div>
+          <div id="reviewEditor" class="review-editor empty-editor">
+            <div id="reviewEmpty"><h3>Select a record</h3><p>Its original PDF row and extracted fields will appear here.</p></div>
+            <div id="reviewFormWrap" class="hidden">
+              <div class="editor-heading"><div><span id="reviewRecordStatus" class="pill"></span><h3 id="reviewRecordTitle"></h3></div><span id="reviewConfidence" class="review-confidence"></span></div>
+              <div id="reviewWarnings" class="warning-box"></div>
+              <figure class="source-preview"><figcaption>Original row from the PDF</figcaption><img id="reviewImage" alt="Original voter row from the source PDF"><div id="reviewImageError" class="image-error hidden">Source-row preview is unavailable. Open the named PDF and page shown above.</div></figure>
+              <form id="reviewForm">
+                <div class="field-grid">
+                  <label>Serial number<input name="serial_number" inputmode="numeric"></label>
+                  <label>House number<input name="house_number"></label>
+                  <label class="span-two">Voter name<input name="voter_name"></label>
+                  <label>Relationship<input name="relationship"></label>
+                  <label>Related name<input name="related_name"></label>
+                  <label>Gender<input name="gender"></label>
+                  <label>Age<input name="age" inputmode="numeric"></label>
+                  <label class="span-two">EPIC ID<input name="epic_id"></label>
+                  <label class="span-two">Verification note<textarea name="note" rows="2" placeholder="Optional note about what you checked or corrected"></textarea></label>
+                </div>
+                <div class="editor-actions"><button id="saveReview" type="submit">Save & verify</button><button id="verifyShown" class="secondary" type="button">Verify as shown</button><span id="reviewSaveState" class="muted-inline"></span></div>
+              </form>
+              <details class="history-panel"><summary>Correction history</summary><div id="reviewHistory"></div></details>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="ask-card"><label for="question">Ask about your documents</label><textarea id="question" rows="3" placeholder="Example: Show people age 70 and above"></textarea><div class="actions"><button id="ask">Ask question</button><button id="export" class="secondary">Export CSV</button></div></section>
+      <section id="answerCard" class="answer-card hidden"><div class="section-head"><h2>Verified answer</h2><span id="matchCount" class="pill"></span></div><div class="trust-row"><span id="answerPath" class="trust-badge"></span><span id="answerConfidence" class="trust-badge"></span><div id="citations" class="citations"></div></div><pre id="answer"></pre></section>
+      <section id="resultsCard" class="results-card hidden"><div class="section-head"><h2 id="recordsTitle">Records</h2><div><button id="prev" class="quiet">Previous</button><span id="pageLabel"></span><button id="next" class="quiet">Next</button></div></div><div class="table-wrap"><table><thead id="recordHead"><tr><th>Source</th><th>Page</th><th>Serial</th><th>House</th><th>Name</th><th>Gender</th><th>Age</th><th>EPIC</th><th>Quality</th></tr></thead><thead id="evidenceHead" class="hidden"><tr><th>Source</th><th>Page</th><th>Type</th><th>Confidence</th><th>Evidence excerpt</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+    </div>
+  </main><div id="toast" class="toast hidden"></div><script src="/assets/app.js"></script>
+</body></html>

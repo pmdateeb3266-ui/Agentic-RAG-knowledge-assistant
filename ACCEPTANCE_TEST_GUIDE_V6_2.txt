@@ -1,0 +1,59 @@
+RAG v6.2 REAL-DATA ACCEPTANCE TESTS
+===================================
+
+The test set contains 60 questions based on the five currently indexed voter
+rolls and their 4,852 structured records.
+
+COVERAGE
+- 7 document and completeness questions
+- 15 age, gender, count, average, oldest, and youngest questions
+- 8 house-number and largest-household questions
+- 8 name and family-member questions
+- 5 EPIC, serial-number, and document-scope questions
+- 7 polling-booth questions
+- 4 semantic retrieval and no-hallucination questions
+- 3 preferred-language questions
+- 3 CSV export checks
+
+FILES
+- acceptance_queries_v6_2.json contains every question and expected result.
+- run_acceptance_tests.py asks the running web application, checks the returned
+  answer data, citations, document scope, record counts, and CSV row counts,
+  then saves a detailed JSON report under reports.
+
+HOW TO RUN EVERYTHING
+1. Start the application with: python run_web.py
+2. Open another PowerShell window in C:\Users\abc\rag-assistant
+3. Activate the environment with: .\.venv\Scripts\Activate.ps1
+4. Run: python run_acceptance_tests.py
+
+HOW TO RUN A SMALLER GROUP
+- Only household cases:
+  python run_acceptance_tests.py --category household
+- One exact case:
+  python run_acceptance_tests.py --case EXACT-01
+
+INTERPRETING RESULTS
+- PASS means the intent, filters, counts, records, source scope, citations, or
+  CSV rows matched the ground-truth expectation for that case.
+- FAIL prints the exact difference and keeps it in the generated report.
+- Baseline-sensitive cases can change after a genuine manual correction to a
+  name, age, gender, house number, or EPIC. Confirm the corrected source row
+  before changing an expected value.
+- Do not update an expected value merely to make a failing query pass. Fix the
+  general query or retrieval rule when the database truth has not changed.
+
+CURRENT STABLE BASELINE
+- Indexed PDFs: 5
+- Indexed pages: 251
+- Structured records: 4,852
+- Male: 3,038
+- Female: 1,814
+- Age 18 through 28: 1,632
+- Age 70 and above: 179
+- Largest household: house 11/42 in 17579156874769.pdf, 14 residents
+- Polling booths: 51, 92, 93, 94, and 95
+
+The suite intentionally contains difficult document-scoped, EPIC, serial, and
+irrelevant semantic questions. These should expose incorrect routing or
+hallucination instead of accepting a plausible-looking answer.

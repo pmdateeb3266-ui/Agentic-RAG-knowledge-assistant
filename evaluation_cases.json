@@ -1,0 +1,42 @@
+[
+  {
+    "name": "all_document_total",
+    "question": "How many total voters are listed",
+    "expected": {"matched_records": 1786, "value": 1786}
+  },
+  {
+    "name": "gender_totals",
+    "question": "How many total, male and female voters are listed",
+    "expected": {"matched_records": 1786, "value": 1786, "groups": {"female": 887, "male": 899}}
+  },
+  {
+    "name": "house_all_documents",
+    "question": "Who is in house number 9-31",
+    "expected": {"matched_records": 12, "result_count": 12}
+  },
+  {
+    "name": "age_70_all_documents",
+    "question": "Show people age 70 and above from all documents",
+    "expected": {"matched_records": 70, "result_count": 25, "total_pages": 3}
+  },
+  {
+    "name": "age_70_show_all",
+    "question": "Show all details of people age 70 and above",
+    "expected": {"matched_records": 70, "result_count": 70}
+  },
+  {
+    "name": "scoped_serial",
+    "question": "Show serial number 14 from 17576784761392.pdf",
+    "expected": {"matched_records": 1, "result_count": 1, "resolved_source": "17576784761392.pdf"}
+  },
+  {
+    "name": "scoped_document_count",
+    "question": "How many voters are in 17576784747921.pdf?",
+    "expected": {"matched_records": 899, "value": 899, "resolved_source": "17576784747921.pdf"}
+  },
+  {
+    "name": "oldest_youngest_english",
+    "question": "Give the oldest 5 people and youngest 5 people in English",
+    "expected": {"matched_records": 10, "result_count": 10, "operation_counts": {"oldest": 5, "youngest": 5}, "output_language": "en"}
+  }
+]

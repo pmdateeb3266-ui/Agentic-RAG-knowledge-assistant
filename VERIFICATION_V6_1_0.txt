@@ -1,0 +1,22 @@
+RAG v6.1.0 verification
+=======================
+
+- Automated regression tests: 68/68 passed.
+- Python compilation and browser-script syntax checks passed.
+- Prior routing, multilingual, structured-query, recovery, and trust tests are
+  preserved.
+- Added tests for source-placeholder classification.
+- Added test for document-scoped gender normalization.
+- Added test proving OCR review cannot remove an existing serial.
+- Completed-index quality projection: 4,622 records without actionable
+  warnings; 230 records on 119 pages need OCR review; 2,921 records have
+  non-actionable source notes (2,920 repeated-zero EPICs and one XXX/-- row).
+- JavaScript syntax check passed.
+- Python compilation check passed.
+
+Source audit findings before classification:
+- 2,920 repeated-zero EPIC warnings are source placeholder/redaction notices.
+- 927 gender warnings came from 17576784804969.pdf and are now normalized using
+  a document-scoped rule verified against the printed page.
+- Missing names, missing/unusual EPIC values, and low-confidence records remain
+  actionable OCR warnings.

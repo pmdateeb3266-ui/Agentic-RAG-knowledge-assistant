@@ -1,0 +1,24 @@
+Upgrade to v6.3.0
+=================
+
+1. Stop the server with Ctrl+C.
+2. Extract RAG-v6-3-0.zip.
+3. Copy the extracted files and web folder into C:\Users\abc\rag-assistant.
+4. Choose Replace when Windows asks about files with the same names.
+5. Do not delete the existing database, documents, exports, reports, or backups
+   folders. The update ZIP does not include them.
+6. Run:
+      cd C:\Users\abc\rag-assistant
+      .\.venv\Scripts\Activate.ps1
+      python run_web.py
+7. Refresh the browser and confirm that the badge shows v6.3.0.
+
+Using backups
+-------------
+Open Data safety in the left panel and select Create verified backup. You can
+download the resulting ZIP for an additional copy on another drive.
+
+To restore, select a backup, select Verify, then select Restore. Confirm the
+warning and type RESTORE exactly. The application creates a safety backup and
+stages the restore. Stop the server with Ctrl+C and run python run_web.py again.
+The staged backup is verified again and applied before the database opens.

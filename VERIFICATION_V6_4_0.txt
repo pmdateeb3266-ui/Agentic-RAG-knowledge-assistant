@@ -1,0 +1,23 @@
+RAG Knowledge Assistant v6.4.0 verification
+============================================
+
+Completed: 12 September 2026
+
+- Automated unit and integration tests: 93/93 passed.
+- Secured real-data acceptance questions: 60/60 passed.
+- First-run administrator creation and protected-data access: passed.
+- Reviewer read/verification access and administrator-action denial: passed.
+- Missing/invalid anti-forgery token denial: passed.
+- Salted password hashing, login, logout, self-service password change,
+  administrator reset, account disabling, and session revocation: passed.
+- Last-administrator protection: passed.
+- Signed-in reviewer and rollback usernames in correction history: passed.
+- Existing v6.3.0 backup compatibility: passed (4,852 records).
+- Full-size v6.4.0 backup verification: passed.
+- Full backup contents: 5 documents, 4,852 records, 52 manually verified
+  records, 52 corrections, 1 isolated test administrator, 6 security events,
+  and 71 data/vector-index files.
+- Browser JavaScript syntax check: passed.
+
+The real-data tests used an isolated copy. The user's live database, documents,
+accounts, corrections, and backups were not modified.

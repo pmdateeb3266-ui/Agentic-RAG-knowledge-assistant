@@ -1,0 +1,14 @@
+RAG v6.0.1 incremental indexing verification
+============================================
+
+Regression suite: 61/61 passed.
+
+Confirmed behaviors:
+- Web uploads launch ingest.py with --source and the exact uploaded filename.
+- Only that PDF contributes to the upload page-progress total.
+- Existing SQLite documents and both Chroma collections are opened rather than reset.
+- A failed incremental job removes partial SQLite and Chroma entries only for the new source.
+- An interrupted, unindexed upload can be retried with the same file.
+- A PDF that is already indexed is rejected as a duplicate.
+- Deliberately running python ingest.py without --source retains the established full-rebuild behavior.
+- All prior query, language, household, family, semantic, pagination, and export tests still pass.

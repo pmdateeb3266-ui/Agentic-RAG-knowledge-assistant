@@ -1,0 +1,19 @@
+RAG v6.0.3 verification
+=======================
+
+Before hotfix:
+- 17576784747921.pdf: missing serial 378.
+- 17576784782290.pdf: missing serial 1.
+- All other documents complete.
+- 4850/4852 records, 2 missing, 0 embedding mismatches.
+
+Focused PDF/OCR verification:
+- 17576784747921.pdf page 20 now returns all serials 361-380.
+- 17576784782290.pdf page 2 now returns all serials 1-20.
+- Serial 378 is retained with its readable structured fields and review status.
+- Serial 1 is retained as the official XXX/-- placeholder record.
+
+Expected result after one additional recovery pass:
+- 4852/4852 records.
+- 0 missing records.
+- Accuracy report passes its index-completeness check.

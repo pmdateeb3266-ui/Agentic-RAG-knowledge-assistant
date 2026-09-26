@@ -1,0 +1,21 @@
+RAG Knowledge Assistant v6.3.0 verification
+============================================
+
+Completed: 12 September 2026
+
+- Automated unit and integration tests: 85/85 passed.
+- Real-data acceptance questions: 60/60 passed.
+- Full-size web backup creation and verification: passed.
+- Backup contents verified: 5 documents, 4,852 records,
+  52 manually verified records, 52 corrections, and 71 data/index files.
+- Backup file size in the isolated validation run: 29,773,155 bytes.
+- Every archived file passed its size and SHA-256 checksum check.
+- The copied structured database passed SQLite integrity verification.
+- Backup staging, mandatory RESTORE confirmation, restart-time restore,
+  automatic pre-restore safety backup, and rollback behavior are covered by
+  automated tests.
+- Existing v6.2.1 query, OCR, recovery, semantic search, export, and manual
+  verification behavior remained unchanged in acceptance testing.
+
+Testing used an isolated copy of the 4,852-record database. The user's live
+database and documents were not changed.

@@ -1,0 +1,13 @@
+RAG v6.2.1 verification
+=======================
+
+Release verification completed 2026-09-12:
+1. Complete unit-test suite: 82/82 passed.
+2. Real-data acceptance suite: 60/60 passed.
+3. Acceptance data: five documents and 4,852 structured records.
+4. Application health endpoint reported version 6.2.1.
+5. Tests ran against an isolated copy of the real database; the live database
+   was not modified.
+
+The acceptance baseline for personal names must be based on reviewed exact-name
+matches. Different names must never be included merely to preserve an old count.

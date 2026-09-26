@@ -1,0 +1,25 @@
+RAG v6.0.2 verification
+=======================
+
+Automated tests: 65/65 passed.
+JavaScript syntax: passed.
+Python compilation: passed.
+
+Representative OCR checks:
+- 17576784747921.pdf final page: serials 901-902 recovered (2 rows).
+- 17576784782290.pdf final page: serials 1001-1005 recovered (5 rows).
+- 17576784804969.pdf final page: serials 921-927 recovered (7 rows).
+- 17579156874769.pdf page 2: serials 1-20 recovered (20 rows).
+- 17579156874769.pdf page 29: serials 541-560 recovered (20 rows).
+- 17579156874769.pdf final page: serials 1121-1131 recovered (11 rows).
+
+Read-only integrity audit of the current five-PDF setup:
+- 17576784747921.pdf: 899 indexed / 902 expected / 3 missing.
+- 17576784761392.pdf: 887 indexed / 887 expected / complete.
+- 17576784782290.pdf: 972 indexed / 1005 expected / 33 missing.
+- 17576784804969.pdf: 914 indexed / 927 expected / 13 missing.
+- 17579156874769.pdf: 942 indexed / 1131 expected / 189 missing.
+- Total: 4614 indexed / 4852 expected / 238 missing.
+
+The audit was run against a copy of the live SQLite database. No live records
+or embeddings were changed during verification.

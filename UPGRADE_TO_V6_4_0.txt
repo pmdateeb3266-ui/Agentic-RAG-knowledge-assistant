@@ -1,0 +1,37 @@
+Upgrade to v6.4.0
+=================
+
+1. Create and download a verified v6.3.0 backup.
+2. Stop the server with Ctrl+C.
+3. Extract RAG-v6-4-0.zip.
+4. Copy the extracted files and web folder into C:\Users\abc\rag-assistant.
+5. Choose Replace when Windows asks about files with the same names.
+6. Do not delete the existing database, documents, exports, reports, or backups folders.
+7. Run:
+      cd C:\Users\abc\rag-assistant
+      .\.venv\Scripts\Activate.ps1
+      python run_web.py
+8. Refresh the browser and confirm that the badge shows v6.4.0.
+9. The first screen asks you to create the administrator. Choose a unique
+   username and a password containing at least 10 characters.
+
+Adding a reviewer
+-----------------
+Sign in as the administrator. In User access, enter the reviewer's name,
+username, temporary password, and select Reviewer. Give those credentials only
+to that reviewer. The administrator can disable the account or reset its
+password later. Every user can also select Change password in the header.
+
+Roles
+-----
+Administrator: every feature, including user management, upload, maintenance,
+reports, backup, and restore.
+
+Reviewer: search, CSV export, and manual verification/correction. Administrative
+controls are hidden and also blocked by the server.
+
+Local password recovery
+-----------------------
+If the only administrator forgets the password, stop the server and run:
+      python reset_admin_password.py
+The password is requested privately and is not shown in PowerShell.

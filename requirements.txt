@@ -1,0 +1,11 @@
+chromadb
+sentence-transformers
+pymupdf
+pytesseract
+Pillow
+opencv-python
+Unidecode
+ollama
+fastapi
+uvicorn
+python-multipart

@@ -1,0 +1,12 @@
+RAG v6.0 verification
+=====================
+
+Automated regression suite: 55/55 passed before trust-layer unit additions.
+Saved query-routing audit: 72/72 passed against all v5.7, v5.8, and v5.9 cases.
+Live indexed documents checked: 4.
+Live SQLite/Chroma record-embedding mismatches: 0.
+Targeted OCR dry-run: completed on one flagged live page with no changes applied;
+the candidate was correctly skipped because it produced no measured improvement.
+
+The final packaged suite also includes trust-layer tests for semantic cutoffs,
+relevance scores, deterministic citations, and localized no-evidence messages.

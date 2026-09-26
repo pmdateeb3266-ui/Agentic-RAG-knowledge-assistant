@@ -1,0 +1,33 @@
+MANUAL VERIFICATION QUICK GUIDE
+===============================
+
+Open Accuracy & OCR > Manual verification.
+
+Needs review
+  Shows only records with actionable OCR warnings. Source placeholders are not
+  added to this queue unless the same record also has a real OCR warning.
+
+Save & verify
+  Saves the values currently in the form, records the changed fields and note,
+  and refreshes both search indexes.
+
+Verify as shown
+  Keeps the stored field values and records that a person checked the source
+  row. Any unsaved typing in the form is ignored by this button.
+
+Verified
+  Use the Status filter to review completed work and see its history.
+
+Roll back
+  Open Correction history and roll back the latest active correction. Older
+  corrections become available for rollback one at a time, preserving a clear
+  chronological audit trail.
+
+Safety rules
+  - The PDF itself is read-only and is never modified.
+  - Duplicate serial numbers in the same PDF are rejected.
+  - Ages outside 18 to 120 are rejected when an age is entered.
+  - An old browser view cannot overwrite a newer edit.
+  - A save is accepted only after SQLite and both Chroma collections update.
+  - Automatic OCR improvement cannot replace a human-verified page.
+

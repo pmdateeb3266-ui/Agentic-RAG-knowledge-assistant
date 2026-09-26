@@ -1,0 +1,19 @@
+RAG v6.2.0 verification
+=======================
+
+- Automated regression tests: 75/75 passed.
+- Existing query routing, name matching, multilingual output, trust reporting,
+  incremental indexing, OCR review, and missing-record recovery tests pass.
+- Existing v6.1 databases migrate in place to the verification schema.
+- The default manual queue returns actionable records and excludes clear rows.
+- Manual edits validate age and serial numbers and reject duplicate serials.
+- Optimistic revision checks reject stale browser edits.
+- Verification removes a record from the actionable queue while retaining its
+  original automatic warning assessment for audit display.
+- Correction history and sequential rollback restore both field values and the
+  prior verification state.
+- Corrected page text, record embeddings, and semantic page chunks are refreshed
+  together; the Chroma synchronization integration test passes.
+- Targeted automatic OCR review skips pages that contain human-verified rows.
+- Browser JavaScript syntax and changed Python module compilation passed.
+

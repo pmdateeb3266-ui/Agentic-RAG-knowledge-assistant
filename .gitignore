@@ -1,0 +1,25 @@
+.venv/
+database/
+documents/
+backups/
+exports/
+reports/
+__pycache__/
+*.pyc
+*.db
+*.sqlite
+*.sqlite3
+.env
+.env.*
+*.pdf
+*.zip
+# Older release documentation
+README_V4*.txt
+README_V5*.txt
+VERIFICATION_V5*.txt
+UPGRADE_TO_V5*.txt
+# Keep only v6 and newer release material
+*_V4*
+*_V5*
+*_v4*
+*_v5*
